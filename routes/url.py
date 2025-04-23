@@ -4,12 +4,13 @@ from sqlmodel import select
 from db.session import get_session
 from models.models import URL
 from schemas.schemas import URLRequest
+from core.security import get_current_user
 
 router = APIRouter()
 
 @router.post("/short_link")
-def short_link(data: URLRequest, request: Request, session=Depends(get_session)):
-    url = URL(original_url=data.user_url)
+def short_link(data: URLRequest, request: Request, user=Depends(get_current_user), session=Depends(get_session)):
+    url = URL(original_url=data.user_url, owner=user.username)
     session.add(url)
     session.commit()
     session.refresh(url)
