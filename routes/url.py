@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException, APIrouter, Depends
+from fastapi import Request, HTTPException, APIRouter, Depends
 from fastapi.responses import RedirectResponse
 from sqlmodel import select
 from db.session import get_session
 from models.models import URL
 from schemas.schemas import URLRequest
 
-router = APIrouter()
+router = APIRouter()
 
 @router.post("/short_link")
 def short_link(data: URLRequest, request: Request, session=Depends(get_session)):
