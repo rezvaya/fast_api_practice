@@ -23,6 +23,8 @@ def redirect(short_id: str, session=Depends(get_session)):
     if not url:
         raise HTTPException(status_code=404, detail="Что-то пошло не так, ссылка не найдена!")
     url.clicks += 1  # Увеличиваем счетчик по short_id
+    session.add(url)
+    session.commit()
     return RedirectResponse(url=url.original_url)
 
 
