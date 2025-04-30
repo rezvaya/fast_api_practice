@@ -1,6 +1,12 @@
 # Вопрос с семинара 30.04
 Проблема с ошибками pylint E0401: Unable to import 'fastapi.responses' (import-error)
-Решается c помощью добавления pylint в окружение: 'poetry add --group dev pylint'
+Решилась c помощью добавления pylint в окружение: 'poetry add --group dev pylint'
+
+После предложенных исправлений:
+> poetry run pylint app    
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
+
 
 # Основные технологии проекта
 
