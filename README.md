@@ -59,53 +59,14 @@
 - **Что это:** Утилита командной строки для отправки HTTP-запросов.
 - **Зачем нужен:** Позволяет студентам тестировать API прямо из консоли (в том числе под Windows).
 - **Особенности:** Удобен для быстрой отладки без браузера или Postman.
+- **Как использовать:** 
 
-# Карта проекта
-## 📁 fast_api_practice/
+`curl -X POST "http://127.0.0.1:8000/register?username=testuser&password=testpass"`
+`curl -X POST "http://127.0.0.1:8000/token" -H "Content-Type: application/x-www-form-urlencoded" -d "username=testuser&password=testpass"`
+`curl -X POST "http://127.0.0.1:8000/short_link" -H "Authorization: Bearer ТОКЕН" -H "Content-Type: application/json" -d "{\"user_url\": \"https://example.com\"}" `
+``
 
-│
 
-├── main.py # 🎯 Точка входа приложения FastAPI 
-
-├── config.py # ⚙️ Конфигурация (БД, секреты, параметры приложения) 
-
-│ 
-
-├── models/ # 🧱 Модели базы данных (SQLModel) 
-
-│ └── models.py 
-
-│ 
-
-├── schemas/ # 📦 Pydantic-схемы (запросы/ответы) 
-
-│ └── schemas.py 
-
-│
-
-├── core/ # 🔐 Авторизация, хеширование, JWT 
-
-│ └── security.py 
-
-│ 
-
-├── db/ # 🗄️ Работа с БД: подключение, сессии 
-
-│ ├── database.py # Создание таблиц и инициализация 
-
-│ └── session.py # Получение сессии для работы с БД 
-
-│ 
-
-├── routes/ # 🚦 Роуты FastAPI 
-
-│ ├── auth.py # Регистрация, логин, токены 
-
-│ └── url.py # Сокращение ссылок, редиректы, статистика 
-
-│ 
-
-└── init.py # Указывает, что это Python-пакет
 
 ## 📚 Назначение папок
 
