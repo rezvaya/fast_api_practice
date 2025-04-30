@@ -1,6 +1,5 @@
 from fastapi import Request, HTTPException, APIRouter, Depends
 from fastapi.responses import RedirectResponse
-from sqlmodel import select
 from app.db.session import get_session
 from app.models.models import URL
 from app.schemas.schemas import URLRequest
@@ -9,7 +8,11 @@ from app.core.security import get_current_user
 router = APIRouter()
 
 @router.post("/short_link")
-def short_link(data: URLRequest, request: Request, user=Depends(get_current_user), session=Depends(get_session)):
+def short_link(
+    data: URLRequest,
+    request: Request,
+    user=Depends(get_current_user),
+    session=Depends(get_session)):
     url = URL(original_url=data.user_url, owner=user.username)
     session.add(url)
     session.commit()
