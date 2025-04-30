@@ -1,10 +1,10 @@
 from fastapi import Request, HTTPException, APIRouter, Depends
 from fastapi.responses import RedirectResponse
 from sqlmodel import select
-from db.session import get_session
-from models.models import URL
-from schemas.schemas import URLRequest
-from core.security import get_current_user
+from app.db.session import get_session
+from app.models.models import URL
+from app.schemas.schemas import URLRequest
+from app.core.security import get_current_user
 
 router = APIRouter()
 

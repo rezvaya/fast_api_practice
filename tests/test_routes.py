@@ -1,3 +1,8 @@
+from app.core.security import get_current_user
+from sqlmodel import Session
+from tests.conftest import engine
+from app.models.models import URL
+
 def test_create_short_link(client, user):
     """Проверка, что короткая ссылка создаётся и сохраняется в БД."""
     def override_user():
