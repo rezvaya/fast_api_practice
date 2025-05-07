@@ -31,7 +31,7 @@ def register(username: str, password: str, session = Depends(get_session)):
     """
     user_exists = session.exec(select(User).where(User.username == username)).first()
     if user_exists:
-        raise HTTPException(status_code=400, detail="Пользователь уже существует")
+        raise HTTPException(status_code=400, detail="Пользователь уже существует!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     user = User(username=username, hashed_password=hash_password(password))
     session.add(user)
     session.commit()
