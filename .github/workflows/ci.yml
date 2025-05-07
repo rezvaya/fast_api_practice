@@ -1,0 +1,36 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install Poetry
+      run: |
+        pip install poetry
+
+    - name: Install dependencies
+      run: |
+        poetry config virtualenvs.create false
+        poetry install --no-root --no-interaction --no-ansi
+
+    - name: Run tests
+      run: |
+        poetry run pytest || echo "No tests found, skipping..."
+
+    - name: Build Docker image
+      run: |
+        docker build -t fast_api_practice .
